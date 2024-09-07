@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('type'); // Misal 'personnel carrier', 'cargo transporter'
             $table->string('license_plate')->unique();
             $table->string('ownership'); // Misal 'owned', 'leased'
-            $table->double('fuel_consumption'); // Konsumsi BBM per km
+            $table->double('fuel_consumption_per_km'); // Konsumsi BBM per km
             $table->string('status')->default('available'); // Possible values: available, in_use, maintenance, etc.
             $table->timestamps();
         });
@@ -57,7 +57,7 @@ return new class extends Migration
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });
 
-        Schema::create('vehicle_usage', function (Blueprint $table) {
+        Schema::create('vehicle_usages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('vehicle_id');
             $table->unsignedBigInteger('employee_id');

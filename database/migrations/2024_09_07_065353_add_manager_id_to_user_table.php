@@ -16,8 +16,8 @@ return new class extends Migration
             $table->enum('role', ['admin', 'manager', 'driver'])->default('driver');
 
             // Drop the foreign key and column for 'manager_id'
-            $table->dropForeign(['manager_id']); // First drop the foreign key
-            $table->dropColumn('manager_id'); // Then drop the column
+            // $table->dropForeign(['manager_id']); // First drop the foreign key
+            // $table->dropColumn('manager_id'); // Then drop the column
         });
     }
 
@@ -28,8 +28,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // Add the 'manager_id' column and foreign key again
-            $table->unsignedBigInteger('manager_id')->nullable();
-            $table->foreign('manager_id')->references('id')->on('employees');
+            // $table->unsignedBigInteger('manager_id')->nullable();
+            // $table->foreign('manager_id')->references('id')->on('employees');
 
             // Remove the 'role' enum column
             $table->dropColumn('role');

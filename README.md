@@ -1,66 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Vehicle App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This document provides all necessary information to configure and use the application. Please follow the setup instructions carefully and refer to the usage guide for operating the application.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Configuration
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### System Requirements
+- **PHP Version:** 8.2
+- **Framework:** Laravel 11.22
+- **Database:** MySQL
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Installation
 
-## Learning Laravel
+1. **Clone the Repository**
+   Clone the project repository by running:
+```bash
+git clone https://github.com/Benardo07/vehicle_app.git
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. **Navigate to Project Directory**
+```bash
+cd vehicle_app
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. **Install Dependencies**
+Run the following command to install the necessary dependencies:
+```bash
+composer install
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. **Environment Configuration**
+Copy the example environment file and make the necessary configuration adjustments:
+(i already provided the Cloud DB env in .env.example, so no need to add own env, just copy it from .env.example)
+```bash
+cp .env.example .env
+```
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. **Generate Application Key**
+Generate a new application key with the artisan command:
+```bash
+php artisan key
+```
 
-### Premium Partners
+6. **Run The Website**
+```bash
+php artisan serve
+```
+Then open new ternimal, to run the Tailwind
+```bash
+npm run dev
+```
+The website will be host at http://127.0.0.1:8000/
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### User Credentials
 
-## Contributing
+- **Admin Account**
+- **Email:** admin@gmail.com
+- **Password:** 12345678
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Manager Account**
+- **Email:** benardo188@gmail.com
+- **Password:** 12345678
 
-## Code of Conduct
+## Usage Guide
+1. ""Logging In**
+1. **Logging In**
+- Access page at `http://127.0.0.1:8000/`, it will direct to login page if not signed In.
+- Enter the email and password, use Admin Account to Book a Vehicle
+- Click the 'Login' button to access the dashboard.
+2. **View List of Vehicle**
+- Vehicle Overview: Access the list of available vehicles from the dashboard to view detailed information including type, status, and usage.
+3. **Book a Vehicle**
+- Booking Process: Select a vehicle and fill out the booking form with details such as date, time,aprrover_id, driver_id and purpose.
+- Submission: Submit the booking for approval or confirmation.
+4. **Login As Manager, to Approve Booking**
+- Managerial Access: Log in with a manager account to view and manage pending bookings.
+- Approval Actions: Approve or reject bookings based on criteria such as availability.
+5. **Initiating Maintenance**
+- Maintenance Request: Initiate maintenance for vehicles requiring service, available when last service date was 90 days ago.
+- Service Scheduling: Schedule maintenance to ensure vehicle readiness
+6. **Return Vehicle**
+- Return Process: Click Button return on the vehicles card that is InUsed.
+- Record Details: Enter kilometers driven and any additional vehicle condition notes.
+7. **Download Excel**
+- Export Data: Download reports of vehicle usage, bookings, and maintenance records in Excel format.
+8. **View Usage Detail in Chart**
+- Usage Analytics: View visual charts displaying vehicle usage statistics for better management and optimization.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Troubleshooting
 
-## Security Vulnerabilities
+If you encounter issues:
+- Confirm all system requirements are met.
+- Verify the `.env` file for proper database credentials and settings.
+- Update dependencies with `composer update`.
+- Clear application cache using `php artisan cache:clear`.
+- Review logs in the `storage/logs` directory for specific errors.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Support
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+For further assistance, contact the development team at:
+- **Email:** benardo188@gmail.com

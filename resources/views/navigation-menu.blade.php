@@ -15,10 +15,25 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('approve_requests') }}" :active="request()->routeIs('approve_requests')">
+                        {{ __('Approve Requests') }}
+                        <span id="pendingRequestsCount" class="ml-2 hidden items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-600 rounded-full">
+                            0
+                        </span>
+                    </x-nav-link>
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <x-button onclick="location.href='{{ route('bookings_export') }}'" >
+                    {{ __('Download Booking Excel') }}
+                </x-button>
+                <x-button onclick="location.href='{{ route('vehicle_usages_export') }}'" class="ml-4">
+                    {{ __('Download Vehicle Usage Excel') }}
+                </x-button>
+                <x-button onclick="location.href='{{ route('bookings.create') }}'" class="ml-4">
+                    {{ __('Book A Car') }}
+                </x-button>
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ms-3 relative">
@@ -142,6 +157,12 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('approve_requests') }}" :active="request()->routeIs('approve_requests')">
+                {{ __('Approve Requests') }}
+                <span id="pendingRequestsCount" class="ml-2 hidden items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-green-600 rounded-full">
+                    0
+                </span>
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -216,4 +237,39 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fetchPendingCount = () => {
+                fetch('/pending-requests-count', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Assuming data.count contains the number of pending requests
+                    const countElement = document.getElementById('pendingRequestsCount');
+                    console.log(data.count)
+                    if (countElement) {
+                        if (data.count > 0) {
+                        countElement.textContent = data.count;
+                        countElement.style.display = 'inline-flex'; // Show the bubble
+                    } else {
+                        countElement.style.display = 'none'; // Hide the bubble
+                    }
+                    }
+                })
+                .catch(error => console.error('Error fetching pending requests count:', error));
+            };
+
+            // Initial fetch
+            fetchPendingCount();
+
+            // Set up polling every 60 seconds
+            setInterval(fetchPendingCount, 5000);
+        });
+    </script>
 </nav>

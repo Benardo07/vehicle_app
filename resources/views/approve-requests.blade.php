@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
+            <div class="overflow-hidden flex flex-row flex-wrap gap-4">
                 @foreach ($bookings as $booking)
                     <div class="p-6 bg-white border-b rounded-lg border-gray-200 flex gap-4 w-[450px]">
                         <img src="{{ $booking->vehicle->image_url }}" alt="{{ $booking->vehicle->model_name }}" class="h-32 object-cover rounded-lg">

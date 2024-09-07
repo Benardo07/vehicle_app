@@ -9,7 +9,7 @@ This document provides all necessary information to configure and use the applic
 ### System Requirements
 - **PHP Version:** 8.2
 - **Framework:** Laravel 11.22
-- **Database:** MySQL
+- **Database:** MySQL 8.0.30
 
 ### Installation
 

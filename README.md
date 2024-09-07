@@ -28,11 +28,12 @@ cd vehicle_app
 Run the following command to install the necessary dependencies:
 ```bash
 composer install
+npm install
 ```
 
 4. **Environment Configuration**
 Copy the example environment file and make the necessary configuration adjustments:
-(i already provided the Cloud DB env in .env.example, so no need to add own env, just copy it from .env.example)
+The .env.example includes preset configurations for a Cloud database:
 ```bash
 cp .env.example .env
 ```
@@ -41,14 +42,14 @@ cp .env.example .env
 5. **Generate Application Key**
 Generate a new application key with the artisan command:
 ```bash
-php artisan key
+php artisan key:generate
 ```
 
 6. **Run The Website**
 ```bash
 php artisan serve
 ```
-Then open new ternimal, to run the Tailwind
+In a new terminal, compile your Tailwind CSS to make sure the styles are up to date:
 ```bash
 npm run dev
 ```
